@@ -39,5 +39,5 @@ Extractmax(){
 Insert(A, k){
     size = size++;
     A[size] = k;
-    A.BuildMaxHeap();
+    maxHeapifyUp(A, i);
 }
