@@ -43,6 +43,7 @@ nodo sucessore(x){
 Insert(T , z){
     x = T.root;
     if(x == nullptr) T.root = z;
+
     if(z.key >= x.key){
         if(x.right != nullptr) insert(x.right, z);
         else {
