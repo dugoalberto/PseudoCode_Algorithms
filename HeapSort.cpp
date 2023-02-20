@@ -1,3 +1,6 @@
+//complessità: O(nlogn)
+//complessità in spazio: O(1)
+//NON stabile
 HeapSort(A){
     BuildMaxHeap(A);
     for (int i = A.size; i >= 1; i--;){
@@ -7,11 +10,13 @@ HeapSort(A){
     }
 
 }
+//complessità: O(nlogn)
 BuildMaxHeap(){
     for(int i = size/2; i >= 1; i--){
         maxHeapify(A, i);
     }
 }
+//complessità: O(logn)
 maxHeapify(A, i){
     l = left(i);
     r = right(i);
@@ -28,16 +33,23 @@ maxHeapify(A, i){
     }
 
 }
-//extract the max from the Heap
+//extract the max from the Heap complexity : O(logn)
 Extractmax(){
-    T max = A[1];
+    nodo max = A[1];
     A[1] = A[size];
     size = size--;
     maxHeapify(A, 1);
     return max; 
 }
+// O(logn)
 Insert(A, k){
     size = size++;
     A[size] = k;
     maxHeapifyUp(A, i);
+}
+maxHeapifyUp(A, i){
+    if(i>1)&&(A[i]> A[i/2]){ //cioè parent(i)
+        A[i] <-> A[i/2];
+        maxHeapify(A, parent(i));
+    }
 }

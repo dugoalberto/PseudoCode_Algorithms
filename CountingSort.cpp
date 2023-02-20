@@ -1,10 +1,8 @@
 //se ci sono dati satellite
 CountingSort(){
     //tutti 0 in c
-    for(int i = 0 ; i<k; i++){
-        C[i] = 0;
-    }
-    //conto occorrenze di dell'indice 6, cioè che A[x] = 6 (occorrenze di un elemento)
+    C[1, ... ,k] <- 0;
+    //conto occorrenze dell'indice 6, cioè che A[x] = 6 (occorrenze di un elemento)
     for(i = 0; i < A.lenght ; i++){
         C[A[i]]++;
     }
@@ -22,9 +20,7 @@ CountingSort(){
 
 //se NON ci sono dati satellite
 CountingSort_NoDatiSatellite(){
-    for(int i = 0 ; i<k; i++){
-        C[i] = 0;
-    }
+    C[1, ... ,k] <- 0;
     //conto occorrenze di dell'indice 6, cioè che A[x] = 6 (occorrenze di un elemento)
     for(i = 0; i < A.lenght ; i++){
         C[A[i]]++;

@@ -1,15 +1,49 @@
-bool IsABR(T){
-    if(T.parent == nullptr){
-        min(T.right); //minimo del sottoalbero radicato in rigth
-        max(T.left); // max del sottoalbero radicato in left
-        if(min > T || max > T ) return false;
+
+//IsABR in tempo n
+//n lunghezza array, i = indice dove sono arrivato
+isABR_REC(A, n, i){
+    if( i > n ) return true;
+    l = isABR_REC(A, n, 2i);
+    r = isABR_REC(A, n, 2i+1);
+    M = max(A, n, 2i); // prendo il max nel sottoalbero sinistro
+    m = min(A, n, 2i + 1); // prendo il min nel sottoalbero destro
+    return ( l && r && A[i] <= m && A[i] >= M);
+}
+min(A, n, i){
+    if (i > n) return +infinite;
+    while(2i < n){
+        i = 2i;
     }
-    if(T == nullptr) return true;
-    if(T.left < T && t.right > T){
-        IsABR(T.left); 
-        IsABR(T.right);
+    return A[i];
+}
+max(A, n , i){
+    if(i > n) return -infinite;
+    while( 2i+1 < n){ 
+        i = 2i+1; //sottoalbero destro
+    }
+    return A[i];
+}
+//il più semplice di tutti in tempo n e ricorsivo
+IsABR_rec2_Array(A,n,i){
+    if (i > n) return true;
+    isL, minL, maxL = IsABR_rec2_Array(A,n,2i)
+    isR, minR, maxR = IsABR_rec2_Array(A,n,2i+1);
+    return isL && isR && A[i] <= minR && A[i] >= maxL,
+            min(minL, minR, A[i]);
+            max(maxL, maxR, A[i]);
+}
+
+//Mio che non funziona
+bool IsABR(x){
+    if(x == nullptr) return true;
+    if(x.left.key < x.key && x.right.key > x.key){
+        min = min(x.right); //minimo del sottoalbero radicato in right
+        max = max(x.left); // max del sottoalbero radicato in left
+        if(min < x.key || max > x.key ) return false;
+        return IsABR(x.left) && IsABR(x.right);
     }else return false;
 }
+
 void inOrder(nodo x){
     if(x != nullptr){
         inOrder(x.left);
@@ -31,12 +65,25 @@ nodo minimo(x){
 nodo sucessore(x){
     //ho figlio destro
     if(x.right != nullptr) return min(x.right);
-    //sono figlio dx
+    //sono figlio dx, allora cerco il primo antenato che è figlio sinistro
     else{
         y = x.parent;
-        while(y < x && y != nullptr) {
+        while(x == y->right && y != nullptr) {
+            x = y;
             y = y.parent;
         } return y;
+    }
+}
+nodo prec(x){
+    if(x->left != null) return max(x->left);
+    else{
+        y = x.parent;
+        while( x == y.left && y != nullptr){
+            x = y;
+            y = y.parent;
+        }
+        return y;
+
     }
 }
 //insert nodo z nell'albero T
@@ -77,3 +124,26 @@ InsertProf(T, z){
         }else y.right = z;
     }
 }
+//seleziona l'i-esimo elemento dell'abr nella vista !! InOrder !!
+Select(T, i){
+    r = x->left->size + 1;
+    if(r == i) return x;
+    if(r > i){
+        return Select(x->left, i);
+    }else{
+        return Select(x->right, i-r);
+    }
+}
+//return la posizione di x nella lista InOrder
+Rank(T, x){
+    r = x.left.size+1;
+    y = x;
+    while( y != root ){
+        if(y = y.p.right){
+            r = r + y.p.right.size + 1;
+        }
+        y = y.p;
+    }
+    return r;
+}
+

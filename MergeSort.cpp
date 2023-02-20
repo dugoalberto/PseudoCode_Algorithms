@@ -1,3 +1,7 @@
+//complessità : O(nlogn)
+//complessità in spazio : O(n) oppure O(1) se gli array li rimetti in A senza crearne di nuovi
+//stabile
+
 divideMergeSort(A, p ,r){
     if(p<r){
         q = (p + r) / 2;
