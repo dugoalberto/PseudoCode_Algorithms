@@ -25,7 +25,7 @@ max(A, n , i){
 }
 //il più semplice di tutti in tempo n e ricorsivo
 IsABR_rec2_Array(A,n,i){
-    if (i > n) return true;
+    if (i > n) return true, +infinite, -infinite;
     isL, minL, maxL = IsABR_rec2_Array(A,n,2i)
     isR, minR, maxR = IsABR_rec2_Array(A,n,2i+1);
     return isL && isR && A[i] <= minR && A[i] >= maxL,

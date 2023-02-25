@@ -50,6 +50,6 @@ Insert(A, k){
 maxHeapifyUp(A, i){
     if(i>1)&&(A[i]> A[i/2]){ //cioè parent(i)
         A[i] <-> A[i/2];
-        maxHeapify(A, parent(i));
+        maxH eapify(A, parent(i));
     }
 }
